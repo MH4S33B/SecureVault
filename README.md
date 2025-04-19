@@ -104,6 +104,14 @@ The app automatically creates two folders:
 - Use the moon/sun icon to switch between dark and light modes.
 ## 🖼️ Screenshots
 
+![Alt text](./assets/1.png)
+![Alt text](./assets/2.png)
+![Alt text](./assets/3.png)
+![Alt text](./assets/4.png)
+![Alt text](./assets/5.png)
+![Alt text](./assets/6.png)
+![Alt text](./assets/7.png)
+![Alt text](./assets/8.png)
 ## ⚠️ Notes
 - **Key Management**: Always back up your ```key.key``` file. Without it, encrypted files cannot be decrypted.
 
@@ -127,15 +135,22 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 🙌 Acknowledgments
 Built with ❤️ by <a href="https://github.com/MH4S33B">MH4S33B</a>
+
 Powered by <a href="https://defang.io/deploy/how-to-deploy-flask/?gad_source=1&gbraid=0AAAAA9xJmWYD-jxEzePCHdb83WzHgaLJ6&gclid=CjwKCAjwk43ABhBIEiwAvvMEB2wa-UKAWF90Ev_qmcZMn-xy9AIKfEgnkgcD9uHH8Fos5HBQ0WLEfhoClDYQAvD_BwE">Flask</a> and <a href="https://en.wikipedia.org/wiki/Cryptography">cryptography</a>
+
 Icons from <a href="https://fontawesome.com/">Font Awesome</a> and <a href="https://simpleicons.org/">Simple Icons</a>
+
 Fonts by <a href="https://fonts.google.com/">Google Fonts</a>
 
 ## 📬 Contact
 GitHub: <a href="https://github.com/MH4S33B">MH4S33B</a>
+
 LinkedIn: <a href="https://www.linkedin.com/in/mhaseeb211/">mhaseeb211</a>
+
 Medium: <a href="https://medium.com/@mh4s33b">mh4s33b</a>
+
 Email: mhaseebraja2006@gmail.com
+
 Support: <a href="https://ko-fi.com/mh4s33b">Ko-Fi</a>
 
 ⭐ Star this repository if you find SecureVault useful! Let’s make file encryption accessible and secure for everyone.
