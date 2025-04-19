@@ -2,6 +2,8 @@
 
 SecureVault is a modern web-based application designed to securely encrypt and decrypt files using symmetric encryption. Built with Flask for the backend and a sleek, futuristic frontend, SecureVault provides an intuitive interface for users to protect their sensitive files with ease. Whether you're safeguarding personal documents or sharing encrypted files, SecureVault ensures your data remains secure.
 
+![image](https://github.com/user-attachments/assets/da5cb974-4373-4c67-ac71-7c299c5ab938)
+
 ---
 
 ## ✨ Features
