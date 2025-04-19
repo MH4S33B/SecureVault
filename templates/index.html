@@ -131,9 +131,9 @@
     }
 
     .file-upload {
-      margin-bottom: 1.5rem; /* Reduced margin */
-      padding: 1.5rem; /* Reduced padding */
-      border: 2px dashed var(--primary-color); /* Thinner border */
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      border: 2px dashed var(--primary-color);
       border-radius: 15px;
       background: rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
@@ -141,6 +141,7 @@
       animation: fadeIn 1s ease-in 0.5s forwards;
       opacity: 1;
       display: block;
+      pointer-events: auto; /* Ensure clickable */
     }
 
     .file-upload.dragover {
@@ -157,11 +158,12 @@
 
     .file-upload label {
       display: block;
-      margin-bottom: 0.8rem; /* Reduced margin */
+      margin-bottom: 0.8rem;
       font-weight: 600;
-      font-size: 1.1rem; /* Reduced font size */
+      font-size: 1.1rem;
       cursor: pointer;
       color: var(--primary-color);
+      pointer-events: auto; /* Ensure clickable */
     }
 
     .file-upload input[type="file"] {
@@ -212,6 +214,7 @@
       opacity: 0.4;
       cursor: not-allowed;
       box-shadow: none;
+      pointer-events: none; /* Prevent interaction */
     }
 
     .buttons button:hover:not(:disabled) {
@@ -454,8 +457,8 @@
     <div class="file-upload" id="fileUpload">
       <label for="fileInput">📂 Drag & Drop or Click to Upload</label>
       <input type="file" id="fileInput" accept="*/*" aria-describedby="fileHelp">
-      <span class="custom-file-label">Choose File</span>
-      <p id="fileHelp" class="sr-only">Upload a file to encrypt, decrypt, or generate a key.</p>
+      <span class="custom-file-label" onclick="document.getElementById('fileInput').click()">Choose File</span>
+      <p id="fileHelp" class="sr-only">Upload a file to encrypt, decrypt, or generate an encryption key.</p>
     </div>
 
     <div class="buttons" role="group" aria-label="File action buttons">
@@ -489,7 +492,7 @@
       <a href="https://mh4s33b.medium.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Medium profile">
         <img src="https://cdn.simpleicons.org/medium/white" alt="Medium">
       </a>
-      <a href="mailto:mhaseebraja2006@gmail.com" aria-label="Send email via Gmail">
+      <a href="/cdn-cgi/l/email-protection#426f6a6371676760706368633032323442656f636b6e2c616d6f" aria-label="Send email via Gmail">
         <img src="https://cdn.simpleicons.org/gmail/D14836" alt="Gmail">
       </a>
       <a href="https://ko-fi.com/MH4S33B" target="_blank" rel="noopener noreferrer" aria-label="Support on Ko-Fi">
@@ -500,45 +503,46 @@
 
   <div class="toast" id="toast"></div>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // Theme Toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      themeToggle.innerHTML = document.body.classList.contains('light-mode')
+    const themeToggle = document.querySelector(".theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      themeToggle.innerHTML = document.body.classList.contains("light-mode")
         ? '<i class="fas fa-sun"></i>'
         : '<i class="fas fa-moon"></i>';
     });
 
     // File Upload Handling
-    const fileInput = document.getElementById('fileInput');
-    const fileUpload = document.getElementById('fileUpload');
-    const customFileLabel = document.querySelector('.custom-file-label');
-    const encryptBtn = document.querySelector('.encrypt-btn');
-    const decryptBtn = document.querySelector('.decrypt-btn');
-    const message = document.getElementById('message');
-    const progressBar = document.getElementById('progressBar');
-    const progress = document.getElementById('progress');
-    const keyOutput = document.getElementById('keyOutput');
-    const generatedKey = document.getElementById('generatedKey');
-    const toast = document.getElementById('toast');
+    const fileInput = document.getElementById("fileInput");
+    const fileUpload = document.getElementById("fileUpload");
+    const customFileLabel = document.querySelector(".custom-file-label");
+    const encryptBtn = document.querySelector(".encrypt-btn");
+    const decryptBtn = document.querySelector(".decrypt-btn");
+    const message = document.getElementById("message");
+    const progressBar = document.getElementById("progressBar");
+    const progress = document.getElementById("progress");
+    const keyOutput = document.getElementById("keyOutput");
+    const generatedKey = document.getElementById("generatedKey");
+    const toast = document.getElementById("toast");
 
     // Initialize visibility
-    fileUpload.style.display = 'block';
-    document.querySelector('.buttons').style.display = 'flex';
-    document.querySelector('footer').style.display = 'block';
+    fileUpload.style.display = "block";
+    document.querySelector(".buttons").style.display = "flex";
+    document.querySelector("footer").style.display = "block";
 
-    fileInput.addEventListener('change', updateFileSelection);
-    fileUpload.addEventListener('dragover', (e) => {
+    fileInput.addEventListener("change", updateFileSelection);
+    fileUpload.addEventListener("dragover", (e) => {
       e.preventDefault();
-      fileUpload.classList.add('dragover');
+      fileUpload.classList.add("dragover");
     });
-    fileUpload.addEventListener('dragleave', () => {
-      fileUpload.classList.remove('dragover');
+    fileUpload.addEventListener("dragleave", () => {
+      fileUpload.classList.remove("dragover");
     });
-    fileUpload.addEventListener('drop', (e) => {
+    fileUpload.addEventListener("drop", (e) => {
       e.preventDefault();
-      fileUpload.classList.remove('dragover');
+      fileUpload.classList.remove("dragover");
       fileInput.files = e.dataTransfer.files;
       updateFileSelection();
     });
@@ -550,69 +554,20 @@
         decryptBtn.disabled = false;
         message.textContent = `File selected: ${fileInput.files[0].name}`;
       } else {
-        customFileLabel.textContent = 'Choose File';
+        customFileLabel.textContent = "Choose File";
         encryptBtn.disabled = true;
         decryptBtn.disabled = true;
-        message.textContent = '';
+        message.textContent = "";
       }
     }
 
-    function showProgress() {
-      progressBar.classList.add('active');
-      progress.style.width = '0';
-      setTimeout(() => {
-        progress.style.width = '100%';
-      }, 100);
-    }
-
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-
-    function encryptFile() {
-      if (!fileInput.files.length) return;
-      message.textContent = 'Encrypting file...';
-      showProgress();
-      setTimeout(() => {
-        message.textContent = 'File encrypted successfully!';
-        showToast('Encryption complete! Download will start soon.');
-      }, 2000);
-    }
-
-    function decryptFile() {
-      if (!fileInput.files.length) return;
-      message.textContent = 'Decrypting file...';
-      showProgress();
-      setTimeout(() => {
-        message.textContent = 'File decrypted successfully!';
-        showToast('Decryption complete! Download will start soon.');
-      }, 2000);
-    }
-
-    function generateKey() {
-      const key = Math.random().toString(36).substr(2, 16);
-      generatedKey.textContent = key;
-      keyOutput.style.display = 'flex';
-      message.textContent = 'Key generated successfully!';
-      showToast('Key generated! Click to copy.');
-    }
-
-    function copyKey() {
-      navigator.clipboard.writeText(generatedKey.textContent);
-      showToast('Key copied to clipboard!');
-    }
-
     // Particle Effect
-    const particlesContainer = document.getElementById('particles');
+    const particlesContainer = document.getElementById("particles");
     function createParticle() {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+      const particle = document.createElement("div");
+      particle.classList.add("particle");
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = Math.random() * 5 + 5 + "s";
       particlesContainer.appendChild(particle);
       setTimeout(() => particle.remove(), 10000);
     }
@@ -620,12 +575,13 @@
     setInterval(createParticle, 300);
 
     // Ensure key output is visible if a key exists
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       if (generatedKey.textContent) {
-        keyOutput.style.display = 'flex';
+        keyOutput.style.display = "flex";
       }
     });
   </script>
+  <script src="/static/script.js"></script>
 </body>
 
 </html>
