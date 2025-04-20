@@ -135,6 +135,9 @@ Please ensure your code follows the project's style and includes tests where app
 ## 📜 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
+## 🔖 Read at
+<a href="https://mh4s33b.medium.com/introducing-securevault-8808a08a048a">Introducing SecureVault🔐</a>
+
 ## 🙌 Acknowledgments
 Built with ❤️ by <a href="https://github.com/MH4S33B">MH4S33B</a>
 
